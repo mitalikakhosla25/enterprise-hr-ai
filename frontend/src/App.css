@@ -1,0 +1,1046 @@
+/* =========================================================
+   ENTERPRISE HR AI - EMPLOYEE RISK ASSESSMENT
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  background:
+    radial-gradient(circle at top left, #e8f0ff 0%, transparent 35%),
+    radial-gradient(circle at bottom right, #eef2ff 0%, transparent 35%),
+    #f5f7fb;
+
+  color: #111827;
+}
+
+
+/* =========================================================
+   MAIN PAGE
+   ========================================================= */
+
+.employee-risk-page {
+  min-height: 100vh;
+  padding: 40px 24px 60px;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.page-header {
+  max-width: 1150px;
+  margin: 0 auto 30px;
+  text-align: center;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.7px;
+  color: #111827;
+}
+
+.page-header p {
+  margin-top: 10px;
+  font-size: 15px;
+  color: #64748b;
+}
+
+
+/* =========================================================
+   MAIN GRID
+   ========================================================= */
+
+.risk-container {
+  max-width: 1150px;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 24px;
+}
+
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.risk-card {
+  background: rgba(255, 255, 255, 0.96);
+
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+
+  padding: 28px;
+
+  box-shadow:
+    0 10px 30px rgba(15, 23, 42, 0.06);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.risk-card:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 18px 40px rgba(15, 23, 42, 0.10);
+
+  border-color: #cbd5e1;
+}
+
+.risk-card h2 {
+  margin: 0 0 24px;
+
+  font-size: 21px;
+  font-weight: 750;
+
+  color: #0f172a;
+}
+
+
+/* =========================================================
+   FORM GRID
+   ========================================================= */
+
+.form-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 20px 16px;
+}
+
+
+/* =========================================================
+   FORM GROUP
+   ========================================================= */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 13px;
+
+  font-weight: 600;
+
+  color: #475569;
+}
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+.form-group input,
+.form-group select {
+  width: 100%;
+
+  height: 48px;
+
+  padding: 0 14px;
+
+  border-radius: 10px;
+
+  border: 1.5px solid #cbd5e1;
+
+  background: #ffffff;
+
+  color: #111827;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    transform 0.15s ease;
+}
+
+
+/* IMPORTANT:
+   Makes typed text DARK and visible
+*/
+
+.form-group input::placeholder {
+  color: #94a3b8;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #4f46e5;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 4px rgba(79, 70, 229, 0.10);
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   PREDICT BUTTON
+   ========================================================= */
+
+.predict-button {
+  width: 100%;
+
+  margin-top: 26px;
+
+  height: 52px;
+
+  border: none;
+  border-radius: 11px;
+
+  background: linear-gradient(
+    135deg,
+    #111827,
+    #312e81
+  );
+
+  color: white;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 20px rgba(49, 46, 129, 0.22);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.predict-button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 28px rgba(49, 46, 129, 0.30);
+}
+
+.predict-button:active {
+  transform: translateY(0);
+}
+
+.predict-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+
+/* =========================================================
+   AI RISK PANEL
+   ========================================================= */
+
+.risk-result {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 360px;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   PROBABILITY
+   ========================================================= */
+
+.probability-label {
+  font-size: 13px;
+
+  font-weight: 600;
+
+  color: #64748b;
+
+  margin-bottom: 4px;
+}
+
+.probability {
+  font-size: 58px;
+
+  line-height: 1;
+
+  font-weight: 800;
+
+  letter-spacing: -2px;
+
+  color: #111827;
+
+  margin: 8px 0 14px;
+}
+
+
+/* =========================================================
+   RISK BADGES
+   ========================================================= */
+
+.risk-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 8px 18px;
+
+  border-radius: 999px;
+
+  font-size: 14px;
+
+  font-weight: 750;
+}
+
+
+/* Low */
+
+.risk-low {
+  background: #dcfce7;
+
+  color: #15803d;
+
+  border: 1px solid #bbf7d0;
+}
+
+
+/* Medium */
+
+.risk-medium {
+  background: #fef3c7;
+
+  color: #b45309;
+
+  border: 1px solid #fde68a;
+}
+
+
+/* High */
+
+.risk-high {
+  background: #fee2e2;
+
+  color: #dc2626;
+
+  border: 1px solid #fecaca;
+}
+
+
+/* =========================================================
+   EXPLANATION BOX
+   ========================================================= */
+
+.risk-explanation {
+  width: 100%;
+
+  margin-top: 28px;
+
+  padding: 22px;
+
+  border-radius: 14px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+}
+
+.risk-explanation h3 {
+  margin: 0 0 10px;
+
+  font-size: 17px;
+
+  color: #0f172a;
+}
+
+.risk-explanation p {
+  margin: 0;
+
+  font-size: 14px;
+
+  line-height: 1.7;
+
+  color: #64748b;
+}
+
+
+/* =========================================================
+   AI STATUS
+   ========================================================= */
+
+.ai-status {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  margin-bottom: 20px;
+
+  font-size: 12px;
+
+  color: #64748b;
+}
+
+.ai-status-dot {
+  width: 8px;
+
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #22c55e;
+
+  box-shadow:
+    0 0 0 4px rgba(34, 197, 94, 0.12);
+
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow:
+      0 0 0 0 rgba(34, 197, 94, 0.35);
+  }
+
+  70% {
+    box-shadow:
+      0 0 0 7px rgba(34, 197, 94, 0);
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE DESIGN
+   ========================================================= */
+
+@media (max-width: 850px) {
+  .risk-container {
+    grid-template-columns: 1fr;
+  }
+
+  .page-header h1 {
+    font-size: 27px;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .employee-risk-page {
+    padding: 25px 14px 40px;
+  }
+
+  .risk-card {
+    padding: 20px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .probability {
+    font-size: 48px;
+  }
+}
+/* =========================================================
+   EMPLOYEE RISK - ADDITIONAL UI
+   ========================================================= */
+
+.risk-page {
+  min-height: 100vh;
+  padding: 40px 24px 60px;
+}
+
+.risk-header {
+  max-width: 1150px;
+  margin: 0 auto 30px;
+}
+
+.risk-header h1 {
+  margin: 8px 0;
+  color: #111827;
+  font-size: 34px;
+  font-weight: 800;
+}
+
+.risk-header p {
+  margin: 0;
+  color: #64748b;
+  font-size: 15px;
+}
+
+.risk-layout {
+  max-width: 1150px;
+  margin: auto;
+
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 24px;
+}
+
+.risk-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 28px;
+
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.07);
+}
+
+.risk-card h2 {
+  margin-top: 0;
+  color: #111827;
+}
+
+.section-heading p {
+  margin-top: -15px;
+  margin-bottom: 25px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.form-group label {
+  color: #374151;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.form-group input,
+.form-group select {
+  height: 46px;
+  padding: 0 13px;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  color: #111827;
+  font-size: 14px;
+
+  outline: none;
+
+  transition: all 0.2s ease;
+}
+
+.form-group input:hover,
+.form-group select:hover {
+  border-color: #94a3b8;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #4f46e5;
+
+  box-shadow:
+    0 0 0 4px rgba(79, 70, 229, 0.10);
+}
+
+.predict-button {
+  width: 100%;
+  height: 52px;
+
+  margin-top: 25px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: linear-gradient(
+    135deg,
+    #111827,
+    #3730a3
+  );
+
+  color: white;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.predict-button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 25px rgba(55, 48, 163, 0.25);
+}
+
+.predict-button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.ai-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.ai-status-dot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #22c55e;
+
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.12);
+}
+
+.empty-result {
+  min-height: 330px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  color: #64748b;
+}
+
+.empty-result h3 {
+  margin: 15px 0 8px;
+  color: #111827;
+}
+
+.empty-result p {
+  max-width: 320px;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.empty-icon {
+  width: 72px;
+  height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 20px;
+
+  background: #eef2ff;
+  color: #4f46e5;
+
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.loading-spinner,
+.button-spinner {
+  border-radius: 50%;
+
+  border: 3px solid #e2e8f0;
+  border-top-color: #4f46e5;
+
+  animation: spin 0.8s linear infinite;
+}
+
+.loading-spinner {
+  width: 55px;
+  height: 55px;
+}
+
+.button-spinner {
+  display: inline-block;
+
+  width: 16px;
+  height: 16px;
+
+  margin-right: 8px;
+
+  border-color: rgba(255,255,255,0.35);
+  border-top-color: white;
+
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.prediction-result {
+  min-height: 330px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.probability {
+  text-align: center;
+}
+
+.probability span {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: #64748b;
+
+  font-size: 11px;
+  font-weight: 750;
+
+  letter-spacing: 1px;
+}
+
+.probability strong {
+  display: block;
+
+  color: #111827;
+
+  font-size: 60px;
+  font-weight: 850;
+
+  letter-spacing: -3px;
+}
+
+.risk-badge {
+  margin-top: 15px;
+
+  padding: 8px 20px;
+
+  border-radius: 999px;
+
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.risk-low {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.risk-medium {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.risk-high {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.result-message {
+  width: 100%;
+
+  margin-top: 28px;
+
+  padding: 18px;
+
+  border-radius: 12px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+
+  text-align: left;
+}
+
+.result-message h3 {
+  margin: 0 0 8px;
+
+  color: #111827;
+
+  font-size: 16px;
+}
+
+.result-message p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+.error-box {
+  margin-top: 18px;
+
+  padding: 14px 16px;
+
+  border-radius: 10px;
+
+  background: #fef2f2;
+
+  border: 1px solid #fecaca;
+
+  color: #b91c1c;
+
+  font-size: 13px;
+}
+
+.error-box p {
+  margin: 5px 0 0;
+}
+
+@media (max-width: 850px) {
+  .risk-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .risk-page {
+    padding: 25px 14px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .risk-header h1 {
+    font-size: 27px;
+  }
+
+  .probability strong {
+    font-size: 48px;
+  }
+}
+
+/* =========================================================
+   AI EXPLAINABILITY
+   ========================================================= */
+
+.risk-drivers {
+  width: 100%;
+  margin-top: 24px;
+}
+
+.analysis-title {
+  margin-bottom: 12px;
+}
+
+.analysis-title h3 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.analysis-title span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #64748b;
+
+  font-size: 11px;
+}
+
+
+.driver-card {
+  padding: 13px 15px;
+
+  margin-bottom: 9px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 10px;
+}
+
+
+.driver-top {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+}
+
+.driver-top strong {
+  color: #1e293b;
+
+  font-size: 13px;
+}
+
+
+.driver-card p {
+  margin: 6px 0 0;
+
+  color: #64748b;
+
+  font-size: 11px;
+
+  line-height: 1.5;
+}
+
+
+.impact-high,
+.impact-medium,
+.impact-low {
+  padding: 4px 8px;
+
+  border-radius: 999px;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+}
+
+
+.impact-high {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+
+.impact-medium {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+
+.impact-low {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+
+/* =========================================================
+   HR RECOMMENDATIONS
+   ========================================================= */
+
+.recommendations {
+  width: 100%;
+
+  margin-top: 24px;
+
+  padding-top: 20px;
+
+  border-top: 1px solid #e5e7eb;
+}
+
+
+.recommendation-item {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 10px;
+
+  padding: 10px 0;
+}
+
+
+.recommendation-number {
+  min-width: 24px;
+  height: 24px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #eef2ff;
+
+  color: #4338ca;
+
+  font-size: 11px;
+
+  font-weight: 800;
+}
+
+
+.recommendation-item p {
+  margin: 3px 0 0;
+
+  color: #475569;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   RESULT CARD IMPROVEMENTS
+   ========================================================= */
+
+.result-card {
+  overflow: hidden;
+}
+
+
+.prediction-result {
+  width: 100%;
+}
+
+
+.prediction-result .probability {
+  margin-top: 10px;
+}
