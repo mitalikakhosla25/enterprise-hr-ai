@@ -1,4 +1,4 @@
-# 🧠 Enterprise HR AI
+#  Enterprise HR AI
 
 > **AI-powered workforce intelligence platform for predicting employee attrition, understanding workforce patterns, and enabling proactive HR decisions.**
 
@@ -14,13 +14,13 @@
 
 ---
 
-## 🚀 What is Enterprise HR AI?
+##  What is Enterprise HR AI?
 
 **Enterprise HR AI** is an intelligent HR analytics platform designed to help organizations move from **reactive HR management to proactive workforce intelligence**.
 
 Instead of waiting for employees to leave, the platform analyzes employee information and machine-learning signals to identify potential attrition risk and provide HR teams with actionable workforce insights.
 
-### 🎯 Core Idea
+###  Core Idea
 
 ```text
 Employee Data
